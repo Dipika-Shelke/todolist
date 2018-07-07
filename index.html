@@ -1,0 +1,62 @@
+<!Doctype Html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="todoCtrl" class="bg-color">
+		<div class="container">
+		<br/>
+		<br/><br/>
+			<div class="row ">
+				<div class="col-md-12">
+					<h1 class="center">My Todo List</h1>
+				</div>	
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<div class="row">
+				<div class="col-md-6">	
+					<form ng-submit="todoAdd()">
+						<input type="text" class="input-group-lg" ng-model="todoInput"  placeholder="Add New">
+						<input type="submit" value="Add New" class="btn-sm btn-primary">
+					</form>
+				<br>				
+				</div>
+				<div class="col-md-6">
+					<div ng-repeat="x in todoList" class="box-sty">
+						<input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
+					</div>
+					<br/>
+					<p><button ng-click="remove()" class="btn-sm btn-primary">Remove marked</button></p>
+				</div>
+			</div>
+		</div>
+
+		
+
+		<script>
+		var app = angular.module('myApp', []); 
+		app.controller('todoCtrl', function($scope) {
+			$scope.todoList = [{todoText:'List Out Things', done:false}];
+
+			$scope.todoAdd = function() {
+				$scope.todoList.push({todoText:$scope.todoInput, done:false});
+				$scope.todoInput = "";
+			};
+
+			$scope.remove = function() {
+				var oldList = $scope.todoList;
+				$scope.todoList = [];
+				angular.forEach(oldList, function(x) {
+					if (!x.done) $scope.todoList.push(x);
+				});
+			};
+		});
+		</script>
+
+	</body>
+</html>

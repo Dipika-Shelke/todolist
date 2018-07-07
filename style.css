@@ -1,0 +1,19 @@
+/* CSS */
+
+.bg-color
+{
+	background-color: #1f1b1b;
+}
+
+.center
+{
+	text-align: center;
+	color:#ef4822;
+}
+.box-sty
+{
+	padding:15px;
+	border: 1px solid #ccc;
+	background-color:rgba(53, 55, 56, 0.5);
+	color: #ccc;
+}
